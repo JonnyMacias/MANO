@@ -1,0 +1,50 @@
+.main{
+    background-color: white;
+    color: black;
+    width: 100%;
+    margin: 10px auto;
+}
+.main h1{
+    padding-left: 30px;
+}
+.container__main{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.container__main p{
+    padding: 10px;
+}
+.imgMain{
+    width: 70%;
+    border-radius: 10px
+}
+.container__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.info__items{
+    cursor: pointer;
+    background-color:  rgb(87, 110, 110);
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+}
+.info__items h4{
+    color: white;
+    text-align: center;
+}
+.info__items img{
+    display: block;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.904);
+    width: 70px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/*-------------------------FOOTER-----------------------------------*/
