@@ -1,4 +1,5 @@
 const imagePreview = document.getElementById("imagePreview");
+let enlace = document.getElementById('linkLogin');
 imagePreview.innerHTML = `<img src="../imagenes/usuario.jpg" alt="cargar IMG">`;
 let imEstado = "vacio";
 document.getElementById("imageUpload").addEventListener("change", function (event) {
@@ -40,7 +41,7 @@ async function registrarUsuarios(){
     }
 
     if(imEstado != "vacio"){
-        const request = await fetch('/login',{
+        const request = await fetch('/registrar',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -49,7 +50,24 @@ async function registrarUsuarios(){
             },
             body: JSON.stringify(datos)
         });
+
+        if (request.ok) {
+            const responseData = await request.json();
+            console.log(responseData);
+            if(responseData.Respuesta != "BAD"){
+                enlace.href = 'index.html';
+            }else{
+                alert("Intentelo de nuevo");
+                return;
+            }
+            console.log(responseData.Respuesta);  // Esto imprimirá "Registrado" si la respuesta incluye esta clave
+        }else{
+            alert("Intentelo de Nuevo")
+            return;
+        }
     }
+
+
 
 }
 

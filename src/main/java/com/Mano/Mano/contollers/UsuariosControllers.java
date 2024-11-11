@@ -8,10 +8,7 @@ import de.mkammerer.argon2.Argon2Factory;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,11 +18,10 @@ import java.util.Map;
 
 @RestController
 public class UsuariosControllers {
-
     @Autowired
     private IUsuario iUsuario;
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "registrar", method = RequestMethod.POST)
     public ResponseEntity<?> registrarUsuario(@RequestBody DatosUs datUs) throws IOException {
         System.out.println(datUs.getCorreo());
         UsuariosDTO usuario = new UsuariosDTO();
@@ -38,7 +34,14 @@ public class UsuariosControllers {
 
         iUsuario.registrar(usuario);
         Map<String, String> respuesta = new HashMap<>();
-        respuesta.put("Registrado", "Registrado");
+        respuesta.put("Respuesta", "Registrado");
         return ResponseEntity.ok(respuesta);
+    }
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public ResponseEntity<?> loginUs(@RequestBody DatosUs datos){
+        UsuariosDTO ususario = new UsuariosDTO();
+        ususario.setCorreo(datos.getCorreo());
+        ususario.setContraseña(datos.getContraseña());
+        return  ResponseEntity.ok( iUsuario.login(ususario));
     }
 }
