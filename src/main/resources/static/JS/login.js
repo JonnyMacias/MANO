@@ -22,13 +22,13 @@ async function registrarUsuarios(){
         const responseData = await request.json();
         console.log(responseData);
         if(responseData.Respuesta != "BAD"){
-            enlace.href = 'home.html';
+            window.location.href ='home.html';
         }else{
-            alert("USUARIO O CONTRASEÑA INCORRECTOS")
+            alert("Las Credenciales Son Incorrectas!");
         }
         console.log(responseData.Respuesta);  // Esto imprimirá "Registrado" si la respuesta incluye esta clave
     }else{
-        alert("USUARIO O CONTRASEÑA INCORRECTOS")
+        alert("Las Credenciales Son Incorrectas!");
     }
 
     }  

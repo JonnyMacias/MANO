@@ -32,7 +32,7 @@ async function registrarUsuarios(){
     datos.correo = document.getElementById('correo').value;
     datos.contraseña = document.getElementById('contraseña').value;
     datos.imagen = base64Image;
-
+    console.log("Base64 Generado:", datos.imagen);
     let petircontra = document.getElementById('confContraseña').value;
 
     if(petircontra != datos.contraseña){
@@ -53,9 +53,9 @@ async function registrarUsuarios(){
 
         if (request.ok) {
             const responseData = await request.json();
-            console.log(responseData);
             if(responseData.Respuesta != "BAD"){
-                enlace.href = 'index.html';
+                //enlace.href ='../index.html';
+               //window.location.href ='../index.html';
             }else{
                 alert("Intentelo de nuevo");
                 return;

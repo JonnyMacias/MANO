@@ -23,6 +23,6 @@ public class UsuariosDTO {
     @Column(name = "contraseña")
     private String contraseña;
     @Lob
-    @Column(name = "imagen")
+    @Column(columnDefinition = "LONGBLOB", name = "imagen")
     private byte[] imagen;
 }

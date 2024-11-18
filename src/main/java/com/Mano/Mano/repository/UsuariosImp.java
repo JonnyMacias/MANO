@@ -1,4 +1,4 @@
-package com.Mano.Mano.service;
+package com.Mano.Mano.repository;
 
 import com.Mano.Mano.domain.UsuariosDTO;
 import de.mkammerer.argon2.Argon2;
@@ -6,7 +6,6 @@ import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import org.springframework.data.annotation.Persistent;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -51,5 +50,18 @@ public class UsuariosImp implements IUsuario{
             respuesta.put("Respuesta", "BAD");
             return respuesta;
         }
+    }
+
+    @Override
+    public List<UsuariosDTO> getUsuario(String usuario) {
+        String query = "FROM UsuariosDTO WHERE correo = :correo";
+        List<UsuariosDTO> lista = entityManager.createQuery(query)
+                .setParameter("correo", usuario)
+                .getResultList();
+
+        if(lista.isEmpty()){
+            return null;
+        }
+        return lista;
     }
 }
