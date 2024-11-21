@@ -23,7 +23,7 @@ footer{
 }
 .footer_info{
     text-align: center;
-    color: white;
+    color: white;   
 }
 .info_link{
     display: flex;
@@ -38,4 +38,16 @@ footer{
     background-color: aliceblue;
     width: 30px;
     border-radius: 50%;
+}
+
+@media(min-width: 768px) {
+    footer{
+        height: 300px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        background-color: black;
+        padding: 20px;
+    }
 }
