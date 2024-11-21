@@ -41,7 +41,7 @@ public class ImgValidacion {
             if (imagen == null) {
                 throw new Exception("La imagen no se pudo cargar. Verifica que sea válida.");
             }
-            File outputfile = new File(nombre);
+            File outputfile = new File("src/main/resources/"+nombre);
             ImageIO.write(imagen, "png", outputfile);
         } catch (Exception e) {
             e.printStackTrace();

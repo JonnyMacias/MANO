@@ -10,7 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class UsuariosDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +24,6 @@ public class UsuariosDTO {
     @Lob
     @Column(columnDefinition = "LONGBLOB", name = "imagen")
     private byte[] imagen;
+    @Column(name = "idEsp")
+    String idEsp;
 }

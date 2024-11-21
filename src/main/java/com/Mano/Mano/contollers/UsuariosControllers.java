@@ -1,20 +1,22 @@
 package com.Mano.Mano.contollers;
 
 import com.Mano.Mano.domain.DatosUs;
+import com.Mano.Mano.domain.SeñasDTO;
 import com.Mano.Mano.domain.UsuariosDTO;
+import com.Mano.Mano.repository.ITemporalInfo;
 import com.Mano.Mano.repository.IUsuario;
+import com.Mano.Mano.services.DeteccionRostro;
 import com.Mano.Mano.services.ImgValidacion;
+import com.Mano.Mano.services.ValidarFace;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,6 +26,10 @@ public class UsuariosControllers {
     @Autowired
     private ImgValidacion imgValidacion;
 
+    @Autowired
+    private ITemporalInfo iTemporalInfo;
+
+
     @RequestMapping(value = "registrar", method = RequestMethod.POST)
     public ResponseEntity<?> registrarUsuario(@RequestBody DatosUs datUs) throws IOException {
         System.out.println(datUs.getImagen());
@@ -31,11 +37,11 @@ public class UsuariosControllers {
         usuario.setNombre(datUs.getNombre());
         usuario.setCorreo(datUs.getCorreo());
         byte[] imagen = Base64.getDecoder().decode(datUs.getImagen());
-        System.out.println(imagen);
+        System.out.println(datUs.getContraseña());
         System.out.println(Base64.getEncoder().encodeToString(imagen));
         usuario.setImagen(imagen);
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String has = argon2.hash(1, 1024, 1, datUs.getContrasena());
+        String has = argon2.hash(1, 1024, 1, datUs.getContraseña());
         usuario.setContraseña(has);
 
         iUsuario.registrar(usuario);
@@ -46,25 +52,67 @@ public class UsuariosControllers {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<?> loginUs(@RequestBody DatosUs datos){
         UsuariosDTO ususario = new UsuariosDTO();
+        System.out.println(datos.getContraseña());
         ususario.setCorreo(datos.getCorreo());
-        ususario.setContraseña(datos.getContrasena());
+        ususario.setContraseña(datos.getContraseña());
         return  ResponseEntity.ok( iUsuario.login(ususario));
     }
     @RequestMapping(value = "getUsuario/{usuario}", method = RequestMethod.GET)
     public UsuariosDTO getUsuarios(@PathVariable String usuario){
 
         System.out.println(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()));
-        imgValidacion.validarImg(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()),"ImgUsuario.png");
+        imgValidacion.validarImg(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()), "ImgPersona\\ImgUsuario.png");
         return iUsuario.getUsuario(usuario).get(0);
     }
 
-    @RequestMapping(value = "setIMG_cam", method = RequestMethod.POST)
-    public ResponseEntity<?> setImgCam(@RequestBody Map<String, String> imagen){
+    @RequestMapping(value = "setIMG_cam/{idESPCam}", method = RequestMethod.POST)
+    public ResponseEntity<?> setImgCam(@PathVariable String idESPCam,  @RequestBody Map<String, String> imagen){
+
         String img = (String) imagen.get("imagen");
-        System.out.println(img);
-        imgValidacion.validarImg(img, "espFoto.png");
+        //imgValidacion.validarImg(Base64.getEncoder().encodeToString(iUsuario.getImagen(idESPCam).get(0).getImagen()), "src\\main\\resources\\ImgPersona\\ImgUsuario.png");
+        //imgValidacion.validarImg(img, "src\\main\\resources\\ImgPersona\\espFoto.png");
+        DeteccionRostro validarFace = new DeteccionRostro("src\\main\\resources\\ImgPersona\\jhonny.jpg", "FaceUsuario");
+        DeteccionRostro validarFace2 = new DeteccionRostro("src\\main\\resources\\ImgPersona\\leonardo.jpg", "FaceEsp");
         Map<String, String> respuesta = new HashMap<>();
-        respuesta.put("Respuesta", "Recivida");
+        //if(validarFace.validacion() == true){
+            respuesta.put("Respuesta", "Ok");
+        //}else{
+            //respuesta.put("Respuesta", "Bad");
+        //}
         return ResponseEntity.ok(respuesta);
     }
+
+    @RequestMapping(value = "face", method = RequestMethod.GET)
+    public ResponseEntity<?> face(){
+        DeteccionRostro validarFace = new DeteccionRostro("src\\main\\resources\\ImgPersona\\superman.jpg", "FaceUsuario");
+        DeteccionRostro validarFace2 = new DeteccionRostro("src\\main\\resources\\ImgPersona\\leonardo3.jpeg", "FaceEsp");
+
+        Map<String, String> respuesta = new HashMap<>();
+        //if(validarFace.validacion() == true){
+        respuesta.put("Respuesta", validarFace2.reconocimientoFacial("src\\main\\resources\\ImgPersona\\FaceUsuario.png","src\\main\\resources\\ImgPersona\\FaceEsp.png"));
+        //}else{
+        //respuesta.put("Respuesta", "Bad");
+        //}
+        return ResponseEntity.ok(respuesta);
+    }
+
+    @RequestMapping(value = "ABC/{idEsp}", method = RequestMethod.GET)
+    public ResponseEntity<?> abc(@PathVariable String idEsp){
+        //iUsuario.getLetras(idEsp);
+        String respu = iTemporalInfo.getRespuesta(idEsp);
+        iTemporalInfo.eliminarRespuesta(idEsp);
+        System.out.println("Consulta: " + respu);
+        Map<String, String> respuesta = new HashMap<>();
+        respuesta.put("Respuesta", respu);
+        return ResponseEntity.ok(respuesta);
+    }
+
+    @RequestMapping(value = "letras", method = RequestMethod.POST)
+    public ResponseEntity<?>letras(@RequestBody SeñasDTO señales){
+        iTemporalInfo.guardar(señales.getIdEsp(), señales.getPalabra());
+        Map<String, String> respuesta = new HashMap<>();
+        respuesta.put("Respuesta", "Registrados");
+        return ResponseEntity.ok(respuesta);
+    }
+
 }

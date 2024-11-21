@@ -1,5 +1,6 @@
 package com.Mano.Mano.repository;
 
+import com.Mano.Mano.domain.SeñasDTO;
 import com.Mano.Mano.domain.UsuariosDTO;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -15,6 +16,7 @@ import java.util.Map;
 @Repository
 @Transactional
 public class UsuariosImp implements IUsuario{
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -57,6 +59,38 @@ public class UsuariosImp implements IUsuario{
         String query = "FROM UsuariosDTO WHERE correo = :correo";
         List<UsuariosDTO> lista = entityManager.createQuery(query)
                 .setParameter("correo", usuario)
+                .getResultList();
+
+        if(lista.isEmpty()){
+            return null;
+        }
+        return lista;
+    }
+/*---------------------------------------------SEÑALES-------------------------*/
+    @Override
+    public void setLetras(SeñasDTO letra) {
+        entityManager.merge(letra);
+    }
+
+    @Override
+    public SeñasDTO getLetras(String idEsp) {
+        String query = "FROM SeñasDTO WHERE idEsp = :idEsp";
+        List<SeñasDTO> lista = entityManager.createQuery(query)
+                .setParameter("idEsp", idEsp)
+                .getResultList();
+
+        if(lista.isEmpty()){
+            System.out.println("es nullñ");
+            return null;
+        }
+        return lista.get(0);
+    }
+
+    @Override
+    public List<UsuariosDTO> getImagen(String idEsp) {
+        String query = "FROM UsuariosDTO WHERE idEsp = :idEsp";
+        List<UsuariosDTO> lista = entityManager.createQuery(query)
+                .setParameter("idEsp", idEsp)
                 .getResultList();
 
         if(lista.isEmpty()){

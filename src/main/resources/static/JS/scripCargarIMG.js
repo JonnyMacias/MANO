@@ -1,6 +1,6 @@
 const imagePreview = document.getElementById("imagePreview");
 let enlace = document.getElementById('linkLogin');
-imagePreview.innerHTML = `<img src="../imagenes/usuario.jpg" alt="cargar IMG">`;
+imagePreview.innerHTML = `<img src="imagenes/usuario.jpg" alt="">`;
 let imEstado = "vacio";
 document.getElementById("imageUpload").addEventListener("change", function (event) {
     const file = event.target.files[0];
@@ -55,7 +55,7 @@ async function registrarUsuarios(){
             const responseData = await request.json();
             if(responseData.Respuesta != "BAD"){
                 //enlace.href ='../index.html';
-               //window.location.href ='../index.html';
+               window.location.href ='../index.html';
             }else{
                 alert("Intentelo de nuevo");
                 return;
