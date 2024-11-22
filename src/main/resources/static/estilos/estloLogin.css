@@ -1,10 +1,10 @@
 body{
-    background-color: rgb(42, 59, 113);
+    background-color: rgb(87, 110, 110);
     margin: 0;
     padding: 0;
 }
 .container_main{
-    background-color: rgb(42, 59, 113);
+    background-color: rgb(87, 110, 110);
     text-align: center;
     width: 100%;
 }
@@ -54,4 +54,39 @@ body{
     text-decoration: none;
     border-radius: 10px;
     border: 1px solid white;
+}
+
+
+@media(min-width: 768px) {
+    body{
+        background-color: rgb(87, 110, 110);
+        margin: auto;
+    }
+    .container_main{
+        background-color: aliceblue;
+        width: 50%;
+        height: 80vh;
+        margin: 80px auto;
+        border-radius: 20px;
+    }
+    .usuario{
+        margin-top: 30px;
+    }
+    .datos{
+        color: black;
+    }
+    .datos input{
+        background-color: rgba(87, 110, 110, 0.788);
+        color: white;
+        font-size: 15px;
+    }
+    .registros a{
+        color: black;
+    }
+
+    .Iniciar{
+        background-color: rgb(87, 110, 110);
+        color: white;
+        border: 1px solid;
+    }
 }

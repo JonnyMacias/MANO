@@ -23,16 +23,17 @@ h1{
 .container_emotes{
     display: grid;
     grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    align-items: center;
     overflow: hidden;
     margin: 10px auto;
     width: 90%;
 }
 h2{
-    width: 90%;
-    margin: 20px auto;
+    text-align: center;
 }
 .emotes{
-    margin: 5px;
+    margin: 15px 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,5 +61,10 @@ h2{
 }
 
 @media(min-width: 768px) {
-
+    .container_emotes{
+        display: grid;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+    }
 }
