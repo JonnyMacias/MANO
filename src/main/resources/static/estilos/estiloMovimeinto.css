@@ -10,7 +10,8 @@ h1{
 .send input{
     padding: 0 10px;
     border-radius: 10px;
-    height: 20px;
+    height: 30px;
+    width: 300px;
 }
 .send img{
     margin-left: 10px;
@@ -56,4 +57,8 @@ h2{
     height: 25px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+
+@media(min-width: 768px) {
+
 }

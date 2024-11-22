@@ -31,7 +31,7 @@ body{
     list-style: none;
     padding: 10px;
     transform: translate(-100%);
-    transition: transform .3s;
+    transition: transform .7s;
 }
 .links{
     margin-top: 20px;

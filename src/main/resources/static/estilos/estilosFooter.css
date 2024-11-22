@@ -1,9 +1,11 @@
 footer{
+    background-color: black;
+}
+.container_footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
     padding: 20px;
 }
 .footer_logo{
@@ -39,15 +41,28 @@ footer{
     width: 30px;
     border-radius: 50%;
 }
-
+footer span{
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+}
 @media(min-width: 768px) {
     footer{
         height: 300px;
         display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: black;
+    }
+    .container_footer{
+        display: flex;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        background-color: black;
+        
         padding: 20px;
+    }
+    footer span{
+        text-align: center;
     }
 }
