@@ -27,7 +27,7 @@ public class UsuariosImp implements IUsuario{
     }
 
     @Override
-    public Map<String, String> login(UsuariosDTO usLoging) {
+    public UsuariosDTO login(UsuariosDTO usLoging) {
         String query = "FROM UsuariosDTO WHERE correo = :correo";
         System.out.println(usLoging.getCorreo() +"--"+usLoging.getContraseña());
         List<UsuariosDTO> lista = entityManager.createQuery(query)
@@ -35,22 +35,15 @@ public class UsuariosImp implements IUsuario{
                 .getResultList();
 
         if(lista.isEmpty()){
-            System.out.println("ME METI");
-            Map<String, String> respuesta = new HashMap<>();
-            respuesta.put("Respuesta", "BAD");
-            return respuesta;
+            return null;
         }
 
         String contraseñahash = lista.get(0).getContraseña();
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         if(argon2.verify(contraseñahash, usLoging.getContraseña())){
-            Map<String, String> respuesta = new HashMap<>();
-            respuesta.put("Respuesta", "OK");
-            return respuesta;
+            return lista.get(0);
         }else{
-            Map<String, String> respuesta = new HashMap<>();
-            respuesta.put("Respuesta", "BAD");
-            return respuesta;
+           return null;
         }
     }
 

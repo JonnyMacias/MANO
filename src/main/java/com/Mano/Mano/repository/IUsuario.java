@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface IUsuario {
     void registrar(UsuariosDTO usuario);
-    Map<String, String> login(UsuariosDTO usLoging);
+    UsuariosDTO login(UsuariosDTO usLoging);
     List<UsuariosDTO> getUsuario(String usuario);
     void setLetras(SeñasDTO letra);
     SeñasDTO getLetras(String idEsp);

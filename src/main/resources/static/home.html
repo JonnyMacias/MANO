@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,18 @@
     <link rel="stylesheet" href="estilos/estiloMenu.css">
     <link rel="stylesheet" href="estilos/estilosIndex.css">
     <link rel="stylesheet" href="estilos/estilosFooter.css">
+
+   
     
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes acceso. Por favor, inicia sesión.");
+            window.location.href = "index.html"; // Redirige a la página de inicio de sesión
+        }
+    </script>
 </head>
+
 <body>
     <nav class="container__menu">
         <img src="imagenes/iconMenu.svg" alt="" class="iconmenu">
@@ -17,26 +28,26 @@
             <li class="links"><a href="#">INICIO</a></li>
             <li class="links"><a href="sensores.html">SENSORES</a></li>
             <li class="links"><a href="movilidad.html">MOVILIDAD</a></li>
-        </ul>   
+        </ul>
     </nav>
     <main class="main">
-        <h1>NOMBRE DEL PROYECTO</h1>
+        <h1>MANO MANITA</h1>
         <div class="container__main">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis perferendis impedit, tempora, neque rerum eligendi, necessitatibus quas delectus eaque veritatis reiciendis laudantium at consequuntur minima dignissimos laboriosam similique optio? A! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur necessitatibus dicta quia numquam at assumenda molestiae quaerat doloremque nam et reprehenderit esse doloribus molestias, deleniti fuga soluta rem beatae voluptates.
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et dolor asperiores explicabo autem, cum delectus voluptatem illo dicta debitis, perspiciatis tenetur eaque vero in dolorum magni libero eveniet vel ab. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae exercitationem cum blanditiis. Deserunt consectetur magni error explicabo fugiat asperiores, blanditiis dicta sunt at repellat quibusdam assumenda inventore perferendis vero magnam.
+            <p>Imagina recuperar la libertad de realizar tareas cotidianas con precisión y confianza. Nuestra prótesis de mano robótica no es solo un dispositivo, ¡es una extensión de ti! Diseñada con tecnología de punta, combina inteligencia artificial y control intuitivo para adaptarse perfectamente a tus necesidades. <br><br>
+            Ligera, resistente y altamente funcional, esta prótesis no solo imita los movimientos de una mano humana, ¡los lleva al siguiente nivel! Desde sostener una taza hasta manipular objetos delicados, todo está al alcance de tu mano, literalmente.
             </p>
             <center>
                 <img src="imagenes/imagen1.jpg" alt="" class="imgMain">
             </center>
-            
+
         </div>
-    </main>  
+    </main>
     <H2>FUNSIONALIDAD</H2>
     <div class="container__info">
-        
+
         <div class="info__items">
             <h4>SEGURIDAD</h2>
-            <img src="imagenes/seguridad.svg" alt="">
+                <img src="imagenes/seguridad.svg" alt="">
 
         </div>
         <div class="info__items">
@@ -48,7 +59,7 @@
             <img src="imagenes/movilidad.svg" alt="">
 
         </div>
-    </div>  
+    </div>
 
     <footer>
         <div class="footer_logo">
@@ -63,29 +74,27 @@
                     <li>Macias Ibarra Jonny</li>
                 </ul>
             </div>
-            
+
             <div class="footer_info">
                 <h4>INFORMACION</h4>
                 <div class="info_link">
                     <div>
-                        <img src="imagenes/GIT.svg" alt="">
+                        <a href="https://github.com/JonnyMacias/MANO.git"><img src="imagenes/GIT.svg" alt=""></a>
                         <h6>GitHub</h6>
                     </div>
                     <div>
-                        <img src="imagenes/youtube.svg" alt="">
+                        <a href=""><img src="imagenes/youtube.svg" alt=""></a>
+                        
                         <h6>YouTube</h6>
-                    </div>
-                    <div>
-                        <img src="imagenes/email.svg" alt="">
-                        <h6>Correo</h6>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <br>    
-        <span style="color: aliceblue; margin-top: 10px;">todos los derechos reservados por el equipo</span>
+
+        <br>
+        <span style="color: aliceblue; margin-top: 10px;">todos los derechos reservados por el equipo de desarrollo</span>
     </footer>
 </body>
 <script src="JS/scriptMenu.js"></script>
+
 </html>

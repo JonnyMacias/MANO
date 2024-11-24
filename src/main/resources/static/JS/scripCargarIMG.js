@@ -31,6 +31,7 @@ async function registrarUsuarios(){
     datos.nombre = document.getElementById('nombre').value;
     datos.correo = document.getElementById('correo').value;
     datos.contraseña = document.getElementById('contraseña').value;
+    datos.idEsp = document.getElementById('serie').value;
     datos.imagen = base64Image;
     console.log("Base64 Generado:", datos.imagen);
     let petircontra = document.getElementById('confContraseña').value;

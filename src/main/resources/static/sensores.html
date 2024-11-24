@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="estilos/estiloSensor.css">
     <link rel="stylesheet" href="estilos/estilosFooter.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes acceso. Por favor, inicia sesión.");
+            window.location.href = "index.html"; // Redirige a la página de inicio de sesión
+        }
+    </script>
 </head>
 <body>
     <nav class="container__menu">
@@ -28,38 +36,24 @@
                     <h3>Ridmo Cardiaco</h3>
                     <img src="imagenes/latidos.gif" alt="" class="iconCorazon">
                 </div>
-                <h2>12 %</h2>
+                <h2 id="ridmo"></h2>
             </div>
             <div class="ifnfoSensores">
                 <div class="ridmoCardiaco_text">
                     <h3>Temperatura</h3>
                     <img src="imagenes/temperatura.svg" alt="" class="icontemp">
                 </div>
-                <h2>30 °C</h2>
+                <h2 id="temp"></h2>
             </div>
             <div class="ifnfoSensores">
                 <div class="ridmoCardiaco_text">
                     <h3>Oxigenacion</h3>
                     <img src="imagenes/oxigenacion.svg" alt="" class="icontemp">
                 </div>
-                <h2>30 °C</h2>
+                <h2 id="oxig"></h2>
             </div>
         </div>
         
-        <div class="registro">
-            <div class="grafica">
-                <h3>GRAFICA DE RIDMO CARDIACO</h3>
-                <canvas id="lineChart"></canvas>
-            </div>
-            <div class="tuDoc">
-                <h3>TU DOCTOR TE RECOMIENDA</h3>
-                <div class="tuDoc_recom">
-                    <img src="imagenes/doctor.svg" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus maiores velit a facere alias facilis dicta quidem! Esse cum culpa iure quod pariatur, error nobis harum exercitationem amet eius ea.</p>
-                </div>
-            </div>
-            
-        </div>
     </main>
 
     <footer>

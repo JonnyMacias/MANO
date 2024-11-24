@@ -40,7 +40,7 @@ body{
     justify-content: space-evenly;
 }
 .registros a{
-    color: white;
+    color: blue;
     text-decoration: none;
 }
 .Iniciar{
@@ -79,9 +79,6 @@ body{
         background-color: rgba(87, 110, 110, 0.788);
         color: white;
         font-size: 15px;
-    }
-    .registros a{
-        color: black;
     }
 
     .Iniciar{

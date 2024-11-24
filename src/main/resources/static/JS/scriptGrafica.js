@@ -1,8 +1,12 @@
 // Selecciona el elemento canvas para la gráfica
 const ctx = document.getElementById('lineChart').getContext('2d');
+const ridmo = document.getElementById('ridmo');
+const temp = document.getElementById('temp');
+const oxig = document.getElementById('oxig');
+const serie = localStorage.getItem("serie");
 
 // Crea la gráfica de líneas
-const lineChart = new Chart(ctx, {
+/*const lineChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'], // Etiquetas de los datos
@@ -23,4 +27,25 @@ const lineChart = new Chart(ctx, {
             }
         }
     }
-});
+});*/
+
+async function getDatos() {
+    console.log(serie);
+    const request = await fetch('/getSensor/'+serie, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    const sensores = await request.json();
+    console.log(sensores);
+    if (sensores != null) {
+        console.log(sensores);
+        ridmo.textContent = sensores.temp + " C°";
+        temp.textContent = sensores.ridmo + " BPM";
+        oxig.textContent = sensores.oxig + " ABG";
+    }
+};
+
+setInterval(getDatos, 1000);

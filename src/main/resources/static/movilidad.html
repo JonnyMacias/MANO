@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="estilos/estiloMenu.css">
     <link rel="stylesheet" href="estilos/estilosFooter.css">
     <link rel="stylesheet" href="estilos/estiloMovimeinto.css">
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes acceso. Por favor, inicia sesión.");
+            window.location.href = "index.html"; // Redirige a la página de inicio de sesión
+        }
+    </script>
 </head>
 <body>
     
@@ -24,38 +32,38 @@
         <h1>LENGUAJE DE SEÑAS</h1>
         <div class="send">
             <input type="text" placeholder="QUE QUIERES DECIR..." id="letras"> 
-            <img src="imagenes/send.svg" alt="" onclick="registrarUsuarios()">
+            <img src="imagenes/send.svg" alt="" onclick="setLetras()">
         </div>
         <br><hr><br>
         <h2>EMOTES :)</h2>
         <div class="container_emotes">
             <div class="emotes">
                 <img src="imagenes/emotes/like.svg" alt="">
-                <h5>LIKE</h5>
+                <h5 class="getEmote">LIKE</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/disLike.svg" alt="">
-                <h5>DISLIKE</h5>
+                <h5 class="getEmote">DISLIKE</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/paz.svg" alt="">
-                <h5>PAZ</h5>
+                <h5 class="getEmote">PAZ</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/pistola.svg" alt="">
-                <h5>PISTOLA</h5>
+                <h5 class="getEmote">PISTOLA</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/rock.svg" alt="">
-                <h5>ROCK</h5>
+                <h5 class="getEmote">ROCK</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/pito.svg" alt="">
-                <h5>PITO</h5>
+                <h5 class="getEmote">PITO</h5>
             </div>
             <div class="emotes">
                 <img src="imagenes/emotes/mas18.png" alt="">
-                <h5>MODO PASION</h5>
+                <h5 class="getEmote">MODO PASION</h5>
             </div>
         </div>
 

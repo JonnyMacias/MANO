@@ -3,11 +3,16 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-color: rgb(87, 110, 110);
+    color: white;
+}
 .cargarIMg{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
 
 }
 input[type="file"] {
@@ -39,6 +44,9 @@ input[type="file"] {
     text-align: center;
 }
 .registrarU__form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     width: 80%;
     text-align: start;
     margin: 10px auto;
@@ -48,6 +56,7 @@ input[type="file"] {
     margin-left: 10px;
 }
 .registrarU__form input{
+    flex: 1 0 200px;
     margin-top: 10px;
     width: 90%;
     height: 35px;
@@ -56,7 +65,7 @@ input[type="file"] {
 }
 
 .registrar{
-    background-color: aquamarine;
+    background-color: white;
     color: black;
     display: flex;
     justify-content: center;
@@ -66,7 +75,31 @@ input[type="file"] {
     height: 45px;
     font-size: 20px;
     text-decoration: none;
-    border-radius: 50px;    
+    border-radius: 15px;    
+}
+
+@media(min-width: 768px) {
+    .registrarU{
+        color: black;
+        text-align: center;
+        background-color: white;
+        width: 700px;
+        margin: 50px auto;
+        border-radius: 20px;
+    }
+    .registrarU__form input{
+        flex: 1 0 200px;
+        margin-top: 20px;
+        width: 90%;
+        height: 40px;
+        padding: 0 10px;
+        border-radius: 15px;
+        border: 2px solid rgb(87, 110, 110);
+    }
+    .registrar{
+        border:2px solid rgb(87, 110, 110);
+    }
+
 }
 
 

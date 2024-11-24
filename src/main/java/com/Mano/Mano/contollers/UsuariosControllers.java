@@ -1,12 +1,15 @@
 package com.Mano.Mano.contollers;
 
 import com.Mano.Mano.domain.DatosUs;
+import com.Mano.Mano.domain.SensorDTO;
 import com.Mano.Mano.domain.SeñasDTO;
 import com.Mano.Mano.domain.UsuariosDTO;
+import com.Mano.Mano.repository.ISensor;
 import com.Mano.Mano.repository.ITemporalInfo;
 import com.Mano.Mano.repository.IUsuario;
 import com.Mano.Mano.services.DeteccionRostro;
 import com.Mano.Mano.services.ImgValidacion;
+import com.Mano.Mano.services.JWTUtil;
 import com.Mano.Mano.services.ValidarFace;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -29,6 +32,12 @@ public class UsuariosControllers {
     @Autowired
     private ITemporalInfo iTemporalInfo;
 
+    @Autowired
+    private ISensor iSensor;
+
+    @Autowired
+    private JWTUtil jwtutil;
+
 
     @RequestMapping(value = "registrar", method = RequestMethod.POST)
     public ResponseEntity<?> registrarUsuario(@RequestBody DatosUs datUs) throws IOException {
@@ -36,6 +45,7 @@ public class UsuariosControllers {
         UsuariosDTO usuario = new UsuariosDTO();
         usuario.setNombre(datUs.getNombre());
         usuario.setCorreo(datUs.getCorreo());
+        usuario.setIdEsp(datUs.getIdEsp());
         byte[] imagen = Base64.getDecoder().decode(datUs.getImagen());
         System.out.println(datUs.getContraseña());
         System.out.println(Base64.getEncoder().encodeToString(imagen));
@@ -50,12 +60,19 @@ public class UsuariosControllers {
         return ResponseEntity.ok(respuesta);
     }
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity<?> loginUs(@RequestBody DatosUs datos){
+    public DatosUs loginUs(@RequestBody DatosUs datos){
         UsuariosDTO ususario = new UsuariosDTO();
         System.out.println(datos.getContraseña());
         ususario.setCorreo(datos.getCorreo());
         ususario.setContraseña(datos.getContraseña());
-        return  ResponseEntity.ok( iUsuario.login(ususario));
+        UsuariosDTO usu = iUsuario.login(ususario);
+        if( usu != null){
+            String token = jwtutil.create(String.valueOf(usu.getId()), usu.getCorreo());
+            System.out.println(usu.getIdEsp());
+            return new DatosUs(token,"","","", usu.getIdEsp());
+        }else {
+            return null;
+        }
     }
     @RequestMapping(value = "getUsuario/{usuario}", method = RequestMethod.GET)
     public UsuariosDTO getUsuarios(@PathVariable String usuario){
@@ -109,10 +126,23 @@ public class UsuariosControllers {
 
     @RequestMapping(value = "letras", method = RequestMethod.POST)
     public ResponseEntity<?>letras(@RequestBody SeñasDTO señales){
+
         iTemporalInfo.guardar(señales.getIdEsp(), señales.getPalabra());
         Map<String, String> respuesta = new HashMap<>();
         respuesta.put("Respuesta", "Registrados");
         return ResponseEntity.ok(respuesta);
     }
 
+    @RequestMapping(value = "setSensor", method = RequestMethod.POST)
+    public ResponseEntity<?>setSensor(@RequestBody SensorDTO sensor){
+        iSensor.guardar(sensor.getIdEsp(), sensor);
+        Map<String, String> respuesta = new HashMap<>();
+        respuesta.put("Respuesta", "Registrados");
+        return ResponseEntity.ok(respuesta);
+    }
+
+    @RequestMapping(value = "getSensor/{idEsp}", method = RequestMethod.GET)
+    public SensorDTO getSensor(@PathVariable String idEsp){
+        return iSensor.getRespuesta(idEsp);
+    }
 }

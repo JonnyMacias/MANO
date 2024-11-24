@@ -1,6 +1,6 @@
 let enlace = document.getElementById('rutLink');
 
-async function registrarUsuarios(){
+async function registrarUsuarios() {
 
     let datos = {};
     datos.nombre = "";
@@ -8,27 +8,23 @@ async function registrarUsuarios(){
     datos.contraseña = document.getElementById('contraseña').value;
     datos.imagen = "";
 
-        const request = await fetch('/login',{
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+    const request = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
 
-            },
-            body: JSON.stringify(datos)
-        });
-    if (request.ok) {
+        },
+        body: JSON.stringify(datos)
+    });
 
-        const responseData = await request.json();
-        console.log(responseData);
-        if(responseData.Respuesta != "BAD"){
-            window.location.href ='home.html';
-        }else{
-            alert("Las Credenciales Son Incorrectas!");
-        }
-        console.log(responseData.Respuesta);  // Esto imprimirá "Registrado" si la respuesta incluye esta clave
-    }else{
+    const respuesta = await request.json();
+    if (respuesta != null) {
+        localStorage.token = respuesta.nombre;//aqui se esta guardando el token creado 
+        localStorage.serie = respuesta.idEsp;
+        window.location.href = 'home.html';
+    } else {
         alert("Las Credenciales Son Incorrectas!");
     }
 
-    }  
+}  

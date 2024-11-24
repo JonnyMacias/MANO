@@ -13,4 +13,5 @@ public class DatosUs {
     private String Correo;
     private String Contraseña;
     private String imagen;
+    private String idEsp;
 }
