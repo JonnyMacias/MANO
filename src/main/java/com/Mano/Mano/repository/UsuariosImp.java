@@ -22,8 +22,19 @@ public class UsuariosImp implements IUsuario{
     private EntityManager entityManager;
 
     @Override
-    public void registrar(UsuariosDTO usuario) {
-        entityManager.merge(usuario);
+    public String registrar(UsuariosDTO usuario) {
+        String query = "FROM UsuariosDTO WHERE correo = :correo";
+        List<UsuariosDTO> lista = entityManager.createQuery(query)
+                .setParameter("correo", usuario.getCorreo())
+                .getResultList();
+
+        if(lista.isEmpty()){
+            entityManager.merge(usuario);
+            return "Registrado";
+        }else{
+            return "BAD";
+        }
+
     }
 
     @Override

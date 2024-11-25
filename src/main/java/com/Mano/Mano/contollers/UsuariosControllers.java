@@ -54,9 +54,9 @@ public class UsuariosControllers {
         String has = argon2.hash(1, 1024, 1, datUs.getContraseña());
         usuario.setContraseña(has);
 
-        iUsuario.registrar(usuario);
+
         Map<String, String> respuesta = new HashMap<>();
-        respuesta.put("Respuesta", "Registrado");
+        respuesta.put("Respuesta", iUsuario.registrar(usuario));
         return ResponseEntity.ok(respuesta);
     }
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -113,7 +113,7 @@ public class UsuariosControllers {
         return ResponseEntity.ok(respuesta);
     }
 
-    @RequestMapping(value = "ABC/{idEsp}", method = RequestMethod.GET)
+        @RequestMapping(value = "ABC/{idEsp}", method = RequestMethod.GET)
     public ResponseEntity<?> abc(@PathVariable String idEsp){
         //iUsuario.getLetras(idEsp);
         String respu = iTemporalInfo.getRespuesta(idEsp);

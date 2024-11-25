@@ -1,5 +1,4 @@
 // Selecciona el elemento canvas para la gráfica
-const ctx = document.getElementById('lineChart').getContext('2d');
 const ridmo = document.getElementById('ridmo');
 const temp = document.getElementById('temp');
 const oxig = document.getElementById('oxig');
@@ -42,8 +41,8 @@ async function getDatos() {
     console.log(sensores);
     if (sensores != null) {
         console.log(sensores);
-        ridmo.textContent = sensores.temp + " C°";
-        temp.textContent = sensores.ridmo + " BPM";
+        ridmo.textContent = sensores.ridmo + " BPM";
+        temp.textContent = sensores.temp + " °C";
         oxig.textContent = sensores.oxig + " ABG";
     }
 };

@@ -58,7 +58,7 @@ async function registrarUsuarios(){
                 //enlace.href ='../index.html';
                window.location.href ='../index.html';
             }else{
-                alert("Intentelo de nuevo");
+                alert("ESTE CORREO YA EXISTEN...");
                 return;
             }
             console.log(responseData.Respuesta);  // Esto imprimirá "Registrado" si la respuesta incluye esta clave

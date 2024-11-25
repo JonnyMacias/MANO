@@ -1,10 +1,11 @@
 const serie = localStorage.getItem("serie");
 
 async function setLetras() {
+    const palabra = document.getElementById('letras');
     let datos = {};
     datos.idEsp = "123"
-    datos.palabra = document.getElementById('letras').value;
-
+    datos.palabra = palabra.value;
+    palabra.value = "";
 
     if (datos.palabra != "") {
         const request = await fetch('/letras', {
@@ -17,6 +18,7 @@ async function setLetras() {
             body: JSON.stringify(datos)
         });
     }
+
 };
 
 const emotes = document.querySelectorAll('.emotes');

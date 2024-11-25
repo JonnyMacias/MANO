@@ -19,6 +19,14 @@ h1{
     border-radius: 50%;
     border: 2px double rgb(87, 110, 110);
 }
+.send img:hover{
+    background-color: rgb(87, 110, 110);
+}
+
+.send img:active {
+    transform: scale(0.95); /* Hace que el div se "encoja" */
+    background-color: #2980b9;
+}
 
 .container_emotes{
     display: grid;
@@ -44,6 +52,11 @@ h2{
     height: 100px;
     cursor: pointer;
 }
+
+.emotes:active{
+    transform: scale(0.95); /* Hace que el div se "encoja" */
+    background-color: #2980b9; /* Cambia ligeramente el color */
+}
 .emotes img{
     margin-top: 5px;
     width: 50px;
@@ -58,6 +71,9 @@ h2{
     height: 25px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+.emotes:hover h5{
+    background-color: darkcyan;
 }
 
 @media(min-width: 768px) {

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IUsuario {
-    void registrar(UsuariosDTO usuario);
+    String registrar(UsuariosDTO usuario);
     UsuariosDTO login(UsuariosDTO usLoging);
     List<UsuariosDTO> getUsuario(String usuario);
     void setLetras(SeñasDTO letra);
