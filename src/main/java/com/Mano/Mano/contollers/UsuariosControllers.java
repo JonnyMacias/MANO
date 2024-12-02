@@ -4,6 +4,7 @@ import com.Mano.Mano.domain.DatosUs;
 import com.Mano.Mano.domain.SensorDTO;
 import com.Mano.Mano.domain.SeñasDTO;
 import com.Mano.Mano.domain.UsuariosDTO;
+import com.Mano.Mano.repository.ICamara;
 import com.Mano.Mano.repository.ISensor;
 import com.Mano.Mano.repository.ITemporalInfo;
 import com.Mano.Mano.repository.IUsuario;
@@ -34,6 +35,9 @@ public class UsuariosControllers {
 
     @Autowired
     private ISensor iSensor;
+
+    @Autowired
+    private ICamara iCamara;
 
     @Autowired
     private JWTUtil jwtutil;
@@ -71,18 +75,18 @@ public class UsuariosControllers {
             System.out.println(usu.getIdEsp());
             return new DatosUs(token,"","","", usu.getIdEsp());
         }else {
-            return null;
+            return new DatosUs(null, null, null, null, null);
         }
     }
     @RequestMapping(value = "getUsuario/{usuario}", method = RequestMethod.GET)
     public UsuariosDTO getUsuarios(@PathVariable String usuario){
 
-        System.out.println(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()));
+        //System.out.println(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()));
         imgValidacion.validarImg(Base64.getEncoder().encodeToString(iUsuario.getUsuario(usuario).get(0).getImagen()), "ImgPersona\\ImgUsuario.png");
         return iUsuario.getUsuario(usuario).get(0);
     }
 
-    @RequestMapping(value = "setIMG_cam/{idESPCam}", method = RequestMethod.POST)
+    /*@RequestMapping(value = "setIMG_cam/{idESPCam}", method = RequestMethod.POST)
     public ResponseEntity<?> setImgCam(@PathVariable String idESPCam,  @RequestBody Map<String, String> imagen){
 
         String img = (String) imagen.get("imagen");
@@ -97,28 +101,47 @@ public class UsuariosControllers {
             //respuesta.put("Respuesta", "Bad");
         //}
         return ResponseEntity.ok(respuesta);
-    }
+    }*/
 
-    @RequestMapping(value = "face", method = RequestMethod.GET)
-    public ResponseEntity<?> face(){
-        DeteccionRostro validarFace = new DeteccionRostro("src\\main\\resources\\ImgPersona\\superman.jpg", "FaceUsuario");
-        DeteccionRostro validarFace2 = new DeteccionRostro("src\\main\\resources\\ImgPersona\\leonardo3.jpeg", "FaceEsp");
+    @RequestMapping(value = "face/{idESPCam}", method = RequestMethod.POST)
+    public ResponseEntity<?> face(@PathVariable String idESPCam, @RequestBody Map<String, String> imagen){
+        String img = imagen.get("imagen");
+        System.out.println(img);
+        imgValidacion.validarImg(Base64.getEncoder().encodeToString(iUsuario.getImagen(idESPCam).get(0).getImagen()), "src\\main\\resources\\ImgPersona\\ImgUsuario.png");
+        imgValidacion.validarImg(img, "src\\main\\resources\\ImgPersona\\espFoto.png");
+        DeteccionRostro validarFace = new DeteccionRostro("src\\main\\resources\\ImgPersona\\ImgUsuario.png", "FaceUsuario");
+        DeteccionRostro validarFace2 = new DeteccionRostro("src\\main\\resources\\ImgPersona\\espFoto.png", "FaceEsp");
 
         Map<String, String> respuesta = new HashMap<>();
-        //if(validarFace.validacion() == true){
-        respuesta.put("Respuesta", validarFace2.reconocimientoFacial("src\\main\\resources\\ImgPersona\\FaceUsuario.png","src\\main\\resources\\ImgPersona\\FaceEsp.png"));
-        //}else{
-        //respuesta.put("Respuesta", "Bad");
-        //}
+        String  estado = validarFace2.reconocimientoFacial("src\\main\\resources\\ImgPersona\\FaceUsuario.png","src\\main\\resources\\ImgPersona\\FaceEsp.png");
+        if(estado.equals("Iguales")){
+        respuesta.put("Respuesta",estado );
+        iCamara.setStado(idESPCam, estado);
+        }else{
+        respuesta.put("Respuesta", estado);
+        iCamara.setStado(idESPCam, estado);
+        }
         return ResponseEntity.ok(respuesta);
     }
 
-        @RequestMapping(value = "ABC/{idEsp}", method = RequestMethod.GET)
+    @RequestMapping(value = "getCam/{idEsp}", method = RequestMethod.GET)
+    public ResponseEntity<?> getEstCam(@PathVariable String idEsp){
+        String estado = iCamara.getEstado(idEsp);
+        Map<String, String> respuesta = new HashMap<>();
+        respuesta.put("Respuesta", estado);
+        return ResponseEntity.ok(respuesta);
+    }
+    @RequestMapping(value = "setCamara/{idESPCam}", method = RequestMethod.POST)
+    public void setCamara(@PathVariable String idESPCam, @RequestBody Map<String, String> imagen){
+        System.out.println(imagen.get("imagen"));
+        iCamara.setStado(idESPCam, imagen.get("imagen"));
+    }
+    @RequestMapping(value = "ABC/{idEsp}", method = RequestMethod.GET)
     public ResponseEntity<?> abc(@PathVariable String idEsp){
         //iUsuario.getLetras(idEsp);
         String respu = iTemporalInfo.getRespuesta(idEsp);
         iTemporalInfo.eliminarRespuesta(idEsp);
-        System.out.println("Consulta: " + respu);
+        //System.out.println("Consulta: " + respu);
         Map<String, String> respuesta = new HashMap<>();
         respuesta.put("Respuesta", respu);
         return ResponseEntity.ok(respuesta);
@@ -126,7 +149,7 @@ public class UsuariosControllers {
 
     @RequestMapping(value = "letras", method = RequestMethod.POST)
     public ResponseEntity<?>letras(@RequestBody SeñasDTO señales){
-
+        System.out.println(señales.getPalabra());
         iTemporalInfo.guardar(señales.getIdEsp(), señales.getPalabra());
         Map<String, String> respuesta = new HashMap<>();
         respuesta.put("Respuesta", "Registrados");

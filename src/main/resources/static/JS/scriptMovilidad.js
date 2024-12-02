@@ -1,4 +1,4 @@
-const serie = localStorage.getItem("serie");
+const serie1 = localStorage.getItem("serie");
 
 async function setLetras() {
     const palabra = document.getElementById('letras');
@@ -31,7 +31,7 @@ async function setMovi(event) {
   
     // Crear el objeto datos
     let datos = {
-      idEsp: serie,
+      idEsp: serie1,
       palabra: ""+index,
     };
   

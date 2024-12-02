@@ -67,7 +67,7 @@ public class DeteccionRostro {
         System.out.println("Coeficiente de correlación: " + correlation);
 
         // Determina si los rostros son similares según el umbral
-        double threshold = 5; // Puedes ajustar este valor
+        double threshold = 4; // Puedes ajustar este valor
         if (correlation >= threshold) {
             System.out.println("Los rostros son similares.");
             return "Iguales";

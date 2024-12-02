@@ -12,11 +12,11 @@
    
     
     <script>
-        const token = localStorage.getItem("token");
+       /* const token = localStorage.getItem("token");
         if (!token) {
             alert("No tienes acceso. Por favor, inicia sesión.");
             window.location.href = "index.html"; // Redirige a la página de inicio de sesión
-        }
+        }*/
     </script>
 </head>
 
@@ -28,6 +28,7 @@
             <li class="links"><a href="#">INICIO</a></li>
             <li class="links"><a href="sensores.html">SENSORES</a></li>
             <li class="links"><a href="movilidad.html">MOVILIDAD</a></li>
+            <li class="links encender"><img src="" alt="" id="botonPower" onclick="getDatos()"></li>
         </ul>
     </nav>
     <main class="main">

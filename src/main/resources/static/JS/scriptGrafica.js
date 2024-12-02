@@ -2,7 +2,7 @@
 const ridmo = document.getElementById('ridmo');
 const temp = document.getElementById('temp');
 const oxig = document.getElementById('oxig');
-const serie = localStorage.getItem("serie");
+const serieS = localStorage.getItem("serie");
 
 // Crea la gráfica de líneas
 /*const lineChart = new Chart(ctx, {
@@ -28,9 +28,9 @@ const serie = localStorage.getItem("serie");
     }
 });*/
 
-async function getDatos() {
-    console.log(serie);
-    const request = await fetch('/getSensor/'+serie, {
+async function getSensorD() {
+    console.log(serieS);
+    const request = await fetch('/getSensor/'+serieS, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -47,4 +47,4 @@ async function getDatos() {
     }
 };
 
-setInterval(getDatos, 1000);
+setInterval(getSensorD, 1000);

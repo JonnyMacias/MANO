@@ -19,11 +19,12 @@ async function registrarUsuarios() {
     });
 
     const respuesta = await request.json();
-    if (respuesta != null) {
+    console.log(respuesta)
+    if (respuesta.nombre != null) {
         localStorage.token = respuesta.nombre;//aqui se esta guardando el token creado 
         localStorage.serie = respuesta.idEsp;
         window.location.href = 'home.html';
-    } else {
+    } else if(respuesta.nombre == null){
         alert("Las Credenciales Son Incorrectas!");
     }
 

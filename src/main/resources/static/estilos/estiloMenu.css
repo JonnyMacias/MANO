@@ -41,6 +41,23 @@ body{
     font-weight:bold;
     text-decoration: none;
 }
+.encender{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.encender img{
+    width: 30px;
+    padding: 2px;
+    cursor: pointer;
+}
+.encender img:hover{
+    background-color: white;
+    padding: 2px;
+    border-radius: 50%;
+}
+
 .nav__list--show{
     transform: translate(0);
 }
