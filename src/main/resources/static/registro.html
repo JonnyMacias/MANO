@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="estilos/estiloReg.css">
+</head>
+<body>
+    <form class="registrarU">
+        <h1>Crear mi Cuenta</h1><br>
+        <div class="cargarIMg">
+            <div>
+                <div id="imagePreview" class="image-preview">
+                </div>
+                <p>Cargar imagen del usuario, Esto servira para poder desbloquear la mano</p>
+            </div>
+            <input type="file" id="imageUpload" accept="image/*">
+        </div>
+        <div class="registrarU__form">
+            <input type="text" id="nombre" placeholder="Nombre Completo..."><br><br>
+            <input type="text" id="correo" placeholder="Correo Electronico..."><br><br>
+            <input type="text" id="serie" placeholder="No. Serie ESP-32..."><br><br>
+            <input type="password" id="contraseña" placeholder="Contraseñas..."><br><br>
+            <input type="password" id="confContraseña" placeholder="Confirmar Contraseña..."><br><br>
+        </div>
+        <a href="#" class="registrar" id="linkLogin" onclick="registrarUsuarios()">REGISTRAR</a>
+        <br>
+    </form>
+    
+</body>
+<script src="JS/scripCargarIMG.js"></script>
+</html>

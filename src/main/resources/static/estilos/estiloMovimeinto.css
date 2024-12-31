@@ -1,0 +1,86 @@
+h1{
+    text-align: center;
+}
+.send{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.send input{
+    padding: 0 10px;
+    border-radius: 10px;
+    height: 30px;
+    width: 300px;
+}
+.send img{
+    margin-left: 10px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px double rgb(87, 110, 110);
+}
+.send img:hover{
+    background-color: rgb(87, 110, 110);
+}
+
+.send img:active {
+    transform: scale(0.95); /* Hace que el div se "encoja" */
+    background-color: #2980b9;
+}
+
+.container_emotes{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    margin: 10px auto;
+    width: 90%;
+}
+h2{
+    text-align: center;
+}
+.emotes{
+    margin: 15px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px double rgb(87, 110, 110);
+    border-radius: 15px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.emotes:active{
+    transform: scale(0.95); /* Hace que el div se "encoja" */
+    background-color: #2980b9; /* Cambia ligeramente el color */
+}
+.emotes img{
+    margin-top: 5px;
+    width: 50px;
+}
+.emotes h5{
+    color: azure;
+    margin: 0;
+    text-align: center;
+    padding-top: 4px;
+    background-color: rgb(87, 110, 110);
+    width: 100%;
+    height: 25px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.emotes:hover h5{
+    background-color: darkcyan;
+}
+
+@media(min-width: 768px) {
+    .container_emotes{
+        display: grid;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+    }
+}

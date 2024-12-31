@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensores</title>
+    <link rel="stylesheet" href="estilos/estiloMenu.css">
+    <link rel="stylesheet" href="estilos/estiloSensor.css">
+    <link rel="stylesheet" href="estilos/estilosFooter.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes acceso. Por favor, inicia sesión.");
+            window.location.href = "index.html"; // Redirige a la página de inicio de sesión
+        }
+    </script>
+</head>
+<body>
+    <nav class="container__menu">
+        <img src="imagenes/iconMenu.svg" alt="" class="iconmenu">
+        <img src="imagenes/logo.png" alt="" class="imglogo">
+        <ul class="nav__list">
+            <li class="links"><a href="home.html">INICIO</a></li>
+            <li class="links"><a href="#">SENSORES</a></li>
+            <li class="links"><a href="movilidad.html">MOVILIDAD</a></li>
+            <li class="links encender"><img src="" alt="" id="botonPower" onclick="getDatos()"></li>
+        </ul>
+    </nav>
+
+    <main class="datos_generales">
+        <h1>MI ESTADO</h1>
+        <div class="info">
+            <div class="ifnfoSensores">
+                <div class="ridmoCardiaco_text">
+                    <h3>Ridmo Cardiaco</h3>
+                    <img src="imagenes/latidos.gif" alt="" class="iconCorazon">
+                </div>
+                <h2 id="ridmo"></h2>
+            </div>
+            <div class="ifnfoSensores">
+                <div class="ridmoCardiaco_text">
+                    <h3>Temperatura</h3>
+                    <img src="imagenes/temperatura.svg" alt="" class="icontemp">
+                </div>
+                <h2 id="temp"></h2>
+            </div>
+            <div class="ifnfoSensores">
+                <div class="ridmoCardiaco_text">
+                    <h3>Oxigenacion</h3>
+                    <img src="imagenes/oxigenacion.svg" alt="" class="icontemp">
+                </div>
+                <h2 id="oxig"></h2>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="footer_logo">
+            <img src="imagenes/logo.png" alt="">
+        </div>
+        <div class="container_footer">
+            <div class="footer_int">
+                <h4>INTEGRANTES</h4>
+                <ul>
+                    <li>Cervantes Torres Armando Israel</li>
+                    <li>Preciado Gonzalez Jesus Eduardo</li>
+                    <li>Macias Ibarra Jonny</li>
+                </ul>
+            </div>
+
+            <div class="footer_info">
+                <h4>INFORMACION</h4>
+                <div class="info_link">
+                    <div>
+                        <a href="https://github.com/JonnyMacias/MANO.git"><img src="imagenes/GIT.svg" alt=""></a>
+                        <h6>GitHub</h6>
+                    </div>
+                    <div>
+                        <a href=""><img src="imagenes/youtube.svg" alt=""></a>
+                        
+                        <h6>YouTube</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <span style="color: aliceblue; margin-top: 10px;">todos los derechos reservados por el equipo de desarrollo</span>
+    </footer>
+</body>
+<script src="JS/scriptGrafica.js"></script>
+<script src="JS/scriptMenu.js"></script>
+
+</html>

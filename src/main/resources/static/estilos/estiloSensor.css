@@ -1,0 +1,111 @@
+.datos_generales {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.info {
+    width: 100%;
+}
+
+.ifnfoSensores {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    max-width: auto;
+    margin: 20px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+    border: 3px double rgb(87, 110, 110);
+}
+
+.ridmoCardiaco_text {
+    margin: 20px auto;
+}
+
+.ifnfoSensores h3 {
+    margin: 0;
+}
+
+.iconCorazon {
+    margin: 0;
+    width: 100px;
+}
+
+.ifnfoSensores h2 {
+    height: 60px;
+    width: 70px;
+    margin: auto auto;
+    background-color: aliceblue;
+    padding: 40px 35px;
+    border-radius: 50%;
+    border: 3px double rgb(87, 110, 110);
+}
+
+.icontemp {
+    width: 60px;
+}
+
+.registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grafica {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+#lineChart {
+    max-width: 600px;
+    margin: auto;
+}
+
+.tuDoc {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.tuDoc_recom {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.tuDoc_recom img {
+    margin-right: 15px;
+    width: 80px;
+}
+
+.tuDoc_recom p {
+    text-align: left;
+}
+
+@media(min-width: 768px) {
+    .info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .ifnfoSensores{
+        margin: 20px;
+    }
+    .registro{
+        margin: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
