@@ -54,7 +54,7 @@ La aplicación web está diseñada con:
 - MySQL
 
 ## Licencia
-Este proyecto está licenciado bajo la [Macias Ibarra Jonny, Preciado Gonzalez Jesus Eduardo, Cervantes Torres Armando Israel](LICENSE).
+Este proyecto está licenciado bajo [Macias Ibarra Jonny, Preciado Gonzalez Jesus Eduardo, Cervantes Torres Armando Israel](LICENSE).
 
 ## Autor
 Desarrollado por **[Macias Ibarra Jonny, Preciado Gonzalez Jesus Eduardo, Cervantes Torres Armando Israel]**.
